@@ -85,9 +85,7 @@ function verificarPassword (usuario, password) {
   // Devuelve "true" si coinciden
   // De lo contrario, devuelve "false"
   // Tu código:
-  if ('password' === usuario.password) {
-    return true;
-  } else return false;
+  return usuario['password'] === password
 }
 
 function actualizarPassword (usuario, nuevaPassword) {
@@ -113,6 +111,10 @@ function pasarUsuarioAPremium (usuarios) {
   // Define cada propiedad "esPremium" de cada objeto como "true"
   // Devuelve el array de usuarios
   // Tu código:
+  for (var i = 0; i < usuarios.length; i++){
+  usuarios[i].esPremium = true;
+  }
+  return usuarios;
 }
 
 function sumarLikesDeUsuario (usuario) {
@@ -122,6 +124,11 @@ function sumarLikesDeUsuario (usuario) {
   // Suma todos los likes de todos los objetos "post"
   // Devuelve la suma
   // Tu código:
+  var sumaLike = 0
+  for ( var k = 0; k < usuario.posts.length; k++) {
+    sumaLike = sumaLike + usuario.posts[k].likes
+  }
+  return sumaLike;
 }
 
 function agregarMetodoCalculoDescuento (producto) {
@@ -134,8 +141,17 @@ function agregarMetodoCalculoDescuento (producto) {
   // producto.porcentajeDeDescuento -> 0.2 (o simplemente ".2")
   // producto.calcularPrecioDescuento() -> 20 - (20 * 0.2)
   // Tu código:
-
+  producto.calcularPrecioDescuento = function (){
+   return this.precio = this.precio - (this.precio * this.porcentajeDeDescuento)
+  }
+  return producto
 }
+/*
+producto {
+  precio: precio,
+  porcentajeDeDescuento: porcentajeDeDescuento
+}
+*/
 
 // No modificar nada debajo de esta línea
 // --------------------------------
